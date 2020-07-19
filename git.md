@@ -31,8 +31,8 @@
 
 1.순서가 있는 목록
 
-  		1. 1.을 눌느고 스페이스바를 누르면 생성할 수 있습니다.
-         		1. tab를 누르면 하위 항목을 생성할 수 있고, shift + tab을 통해 상위로 이동도 가능합니다.
+     		1. 1.을 눌느고 스페이스바를 누르면 생성할 수 있습니다.
+          		1. tab를 누르면 하위 항목을 생성할 수 있고, shift + tab을 통해 상위로 이동도 가능합니다.
 
 - 순서가 없는 목록
   - `-` (하이픈)을 쓰고 스페이스바를 누르면 생성할 수 있습니다.
@@ -70,7 +70,7 @@
 
 
 
-## 1.5Link![캡처](../사피/캡처.JPG)
+## 1.5Link![캡처](C:/Users/MinHo/Desktop/사피/캡처.JPG)
 
 >특정주소로 링크를 걸 때 사용합니다.
 
@@ -124,4 +124,4 @@ select = data.select_one('#wrapSearch > div.slide_favorsch > ul:nth-child(1) > l
 print(select.text)
 ```
 
-![캡처](../기타/캡처.PNG)
+![캡처](git.assets/캡처.PNG)![캡처](C:/Users/MinHo/Desktop/기타/캡처.PNG)
