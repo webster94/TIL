@@ -1,2 +1,3 @@
-A=(input(  ) , input())
-print(A)
+A=input().spilt()
+if a>b :
+    
