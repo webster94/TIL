@@ -10,7 +10,7 @@
 
 ```sh
 $ git config --global user.email{이메일 주소}
-$ git config --global user.name
+$ git config --global user.name webster94
 ```
 
 ## 로컬 저장소 활용하기
@@ -104,7 +104,17 @@ $ git clone {가져오고자 하는 repo url}
 
 
 
+# 5. 자리 변경 시 해야할 일들
 
+
+
+1.  자격 증명 제거
+
+2. git clone
+
+3. 계정 이름/메일 변경
+
+    
 
 > 
 
