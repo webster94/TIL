@@ -388,7 +388,7 @@ print(sum_of_digit(4321))
 ```
 1. 이름공간
 
-   ```
+```
    Local scope: 정의된 함수
    Enclosed scope: 상위 함수
    Global scope: 함수 밖의 변수 혹은 import된 모듈
@@ -399,18 +399,18 @@ print(sum_of_digit(4321))
 
    ```
    1. 함수의 return
-   앞서 설명한 것과 마찬가지로 함수는 반환되는 값이 있으며, 이는 어떠한 종류(의 객체)라도 상관없습니다.
-   
+      앞서 설명한 것과 마찬가지로 함수는 반환되는 값이 있으며, 이는 어떠한 종류(의 객체)라도 상관없습니다.
+
    단, 오직 한 개의 객체만 반환됩니다. << 그럼 이건 무슨 소린가..
    return a,b ???
-   
+
    함수가 return 되거나 종료되면, 함수를 호출한 곳으로 돌아갑니다.
    4.가변(임의) 인자 리스트(Arbitrary Argument Lists)
    앞서 설명한 print()처럼 개수가 정해지지 않은 임의의 인자를 받기 위해서는 가변 인자 리스트*args를 활용합니다.
-   
+
    가변 인자 리스트는 tuple 형태로 처리가 되며, 매개변수에 *
    로 표현합니다.
-   
+
    ```
 
 3. 재귀 함수
@@ -441,13 +441,13 @@ print(sum_of_digit(4321))
    
    ```
 
-   
+
 ```
 
 ```
 1.
 
-​```python
+```python
 #ask code 1번 숫자의 의미
 def get_scret_word(numbers):
     # 65,85,120,
@@ -460,7 +460,7 @@ get_scret_word([83,115,65,102,89])
 
 2.
 
-​```python
+```python
 def get_secret_number(word):
     number = 0
     for char in word:
@@ -471,7 +471,7 @@ print(get_secret_number('tom'))
 
 3.
 
-​```python
+```python
 def get_strong_word(word1, word2):
     number1 = 0
     number2= 0
@@ -486,7 +486,7 @@ def get_strong_word(word1, word2):
 print(get_strong_word('tom','john'))
 ​```
 
-​```python
+```python
 def get_strong_word(word1, word2):
     return word1 if get_secret_number(word1)>= get_secret_number(word2) else word2
 print(get_strong_word('tom','john'))
@@ -617,4 +617,145 @@ print(get_strong_word('tom','john'))
 
 # 이론복습
 >>>>>>> 2898b443f70dd856f4043c1a184a754794ea4dc8
+8/6일 ..이대론 안된다 공부법 시행
+
+```
+
+```python
+1. 색칠하기
+T = int(input())
+for t in range(1,T+1):
+crt = int(input())
+li = [[int(x) for x in input().split()]] for _ in range(crt)] 2차원 배열 생성 crt 만큼!!
+matrix = [[0]*10 for _ in range(10)]
+total = 0
+li = [[int(x) for x in input().spilt()] for _ in range(crt)]
+for n in range(crt): x,y 값을 지정해주었다,
+    xx1 = li[n][0]
+    yy1 = li[n][1]
+    xx2 = li[n][2]
+    yy2 = li[n][3]
+    for i in range(xx1,xx2+1):
+        for j in range(yy1,yy2+1):
+            matrix[i][j] += 1
+for i in matrix:
+    total += (i.count(2))
+   print(total)
+```
+
+```
+# 2차원 배열  형성!!!
+T = int(input())
+for t in range(1,T+1):
+	crt = int(input())
+	li = [[int(x) for x in input().split()] for _ in range(crt)]
+	li = [[int(x) for x in input().split()] for _ in range(crt)]
+	li = [[int(x) for x in input().split()] for _ in range(crt)]
+	li = [[int(x) for x in input().split()] for _ in range(crt)]
+	li = [[int(x) for x in input().split()] for _ in range(crt)]
+	li = [[int(x) for x in input().split()] for - in range(crt)]
+	li = [[int(x) for x in input().split()] for _ in range(crt)]
+	
+빈배열 만들기
+	matrix = [[0] for ]
+for n in range(crt): ## 입력받은 값을 2차원 배열에 표시하시 전 값을 지정하는 법
+	xx1 = li[n][0]
+	yy1 = li[n][1]
+	xx2 = li[n][2]
+	yy2 = li[n][3]
+	count = lip[n][4]
+	for i in range(xx1,xx2+1):  세로
+		for j in range(yy1,yy2+1):   가로 기링
+			matrix[i][j] +=1   세로와 가로에 포함된 곳에 1을 추가
+for i in matrix:  매트릭스를 돌며 I 값 안에 있는 최댓값인 2의 개수를 구한다. 
+	total += (i.count(2))
+print(total)
+		
+	
+	
+	
+
+```
+
+```
+2. 숫자 처음 값 끝값나열하기.
+T = int(input())
+for t in range(1,T+1):
+    n = int(input())
+    result = []
+    numbers = list(map(int,input().split())) # 
+    numbers = sorted(numbers)
+    for i in range(0,5):  # 5번 하려고
+        result.append(numbers[len(numbers)-i-1])
+        result.append(numbers[i])#  처음에 10 이 포함이 되지않아서!! # -1 을 해야줘야한다
+    bin = ''   # 빈자리를 만들고
+    for k in result:  # RESULT의 리스트에 K값을 더한다.
+        bin += str(k) + ' ' # 문자열로 바꿔 BIN에 추가한다. 이때 ' '을 줘서 간격을 준다
+    print(f'#{t} {bin}')  정답과 같은 답이다!
+
+
+```
+
+```
+3. 부분 집합의 합
+
+A = [1,2,3,4,5,6,7,8,9,10,11,12] # 주어진 값!
+T = int(input())
+for t in range(1,T+1):
+    N,K = list(map(int,input().split())) 
+    result = 0
+    for i in range(1<<12):  전체 경우의 수
+        total = 0
+        count = 0
+        for j in range(13): 부분집합
+            if i & (1<<j):  확인 
+                total += A[j]   이 부분을 잘 모르겠다!!!!
+                count += 1
+        if count == N and total == K:  # 이부분을 잘모르겠다!!!
+            result +=1
+    print(f'#{t} {result}')
+```
+
+```
+4. 이진탐색!
+def binarySearch(Page,key):
+    start = 1
+    end  =  Page
+    count = 0
+    while start <= end:
+        middle = (start +end )//2
+        if middle == key:
+            return count
+        elif middle > key:
+            end = middle
+        else : start = middle
+        count += 1
+T = int(input())
+for t in range(1,T+1):
+    P,A,B = list(map(int,input().split()))
+    A_count = binarySearch(P,A)
+    B_count = binarySearch(P,B)
+    if A_count < B_count:
+        print(f'#{t} A')
+    elif A_count == B_count:
+        print(f'#{t} 0')
+    else:
+        print(f'#{t} B')
+```
+
+```python
+T = int(input())
+for t in range(1,T+1):
+    N = int(input())
+    li = [[1 for i in range(1+j)] for j in range(N)]
+    for x in range(2,N):
+        for y in range(1,x):
+            li[x][y] = li[x-1][y-1] + li[x-1][y]
+    print(f'#{t}')
+    for i in range(N):
+        for j in range(i+1):
+            print(li[i][j], end= ' ')
+            print()
+    
+```
 
