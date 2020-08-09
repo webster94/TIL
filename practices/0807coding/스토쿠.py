@@ -13,6 +13,7 @@ for t in range(1,T+1):
             ver.add(arr[j][i])  # 열 체크
         if len(hor) != 9:  # 행의 길이가 9가 아닐 경우 거짓
             result = 0
+            break
         if len(ver) != 9: # 열의 길이가 9가 아닐 경우 거짓
             result = 0
             break
