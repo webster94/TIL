@@ -361,3 +361,39 @@ flexbox 정렬 유틸리티를 사용하여 열을 수직 및 수평으로 정�
 > `.offset-md-*`클래스를 사용하여 열을 오른쪽으로 이동합니다 . 이러한 클래스는 열의 왼쪽 여백을 열 단위로 늘 `*`립니다. 예를 들어, 4 개 열 위로 `.offset-md-4`이동 `.col-md-4`합니다.
 
 ![image-20200813015946643](TIL.assets/image-20200813015946643.png)
+
+
+
+# 0813 수업내용
+
+> bootstrap 은 컨테이너 안에 작성을 
+
+- 수직정렬
+- 그리드
+- 오프셋 빈칸을 줄 수 있다.
+- display none  < 화면 크기 조정하면서 없애는 법>
+- componants
+  - button
+  - navbas
+  - pagination
+  - alerts, form
+
+```
+flex를 이용한 공간띄우기
+1 상ㅇ위태그 만들기 
+d-flex justify-content-space-between
+```
+
+sticktop은 본인 자리를 생성해서 자리를 차지, 삭제 시 공간이 반납
+
+fixtop은 만들어진 자리 위에 자리를 차지. 삭제 시 공간 같음.
+
+
+
+````
+col을 사용할 때는 항상 컨테이너에 담아 사용
+그리고 그리드에  px 이상,미만일 경우 확인 잘하고
+미만일 경우 cor- 사용
+offset-md-0 일 경우 margin-left 0으로 만들어줘서 제거해줌. 
+````
+
