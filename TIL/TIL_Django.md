@@ -23,7 +23,7 @@
 
 ### 프로젝트 작성방법
 
-​	1.django-admin stratproject first_django <프로젝트 생성방법>
+​	1.django-admin startproject first_django <프로젝트 생성방법>
 
 ​	2.cd, 또는 폴더에 들어가서 vs코드를 다시 실행시킨다.
 
@@ -34,7 +34,7 @@ git bash에서도 가능하다.
 django-admin startproject intro.
 
 ls를 치면 manage.py가 만들어져있다.
-python mange.py runserver로 확인
+python manage.py runserver로 확인
 ```
 
 
