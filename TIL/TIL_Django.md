@@ -23,11 +23,11 @@
 
 ### 프로젝트 작성방법
 
-​	1.django-admin startproject first_django <프로젝트 생성방법>
+​	1.django-admin startproject ```first_django``` <프로젝트 생성방법>
 
 ​	2.cd, 또는 폴더에 들어가서 vs코드를 다시 실행시킨다.
 
-3. python mange.py startapp articles! (변수이름이다.)
+3. python mange.py startapp ```articles!``` (변수이름이다.)
 
 ```
 git bash에서도 가능하다.
@@ -75,6 +75,20 @@ View함수에서 어떠한 데이터를 가공하고, 사용자가 보는 브라
 ```
 
 
+
+```
+세팅
+"files.associations": {
+    "**/*.html": "html",
+    "**/templates/**/*.html": "django-html",
+    "**/templates/**/*": "django-txt",
+    "**/requirements{/**,*}.{txt,in}": "pip-requirements"
+},
+
+
+
+"emmet.includeLanguages": {"django
+```
 
 
 
@@ -345,7 +359,6 @@ articles에 catch.html을 만든다.
 
 
 Intro
-
 
 python version 3.7 확인
 vscode django extension 설치 및 설정
@@ -734,3 +747,556 @@ https://docs.djangoproject.com/en/3.1/ref/request-response/#module-django.http
 
 # --------------------------------------------
 
+# 0818 송교수님 django 강의
+
+1. lorem 조정
+
+2. truncatewrods : 글자수를 제한할 수있다. 대신 끝에는 ...이 포함된다!
+3. 글자관련 필터
+4. 연산이 가능하네
+5.  include로 앱별로 구별가능 (urls.py를 만들 때 urlpatterns를 만들어줘야한다.)
+6. 같은 templates가 있을 경우 장고는 모든 파일들을 하나로 모아서 관리하기 때문에,
+7. installed에 등록된 순서에 따라 찾고 넘어간다.
+8. 이를 구분하기 위해 각각 templates에 폴더를 만들고 인덱스 , html 을 만들어서 접근을 하게만들어서 구분을했다.
+9. base.html은 모든페이지에 동일하게 들어갈 녀석들은 미리 만들어 ㄶ고 블록을 통해서 세부내용용을 채울수 있다. 사용할 때는 코드 최상단에 extends base.html을 똑같이 작성을 하고
+10. 각 블록에 들어갈 내용을 작성을 하면 된다. 그리고  setting.py에다가 dir에 추가를 하면 사용가능하다.
+11. 이게 없으면 templates에 폴더가 뜨지않는다.
+12. catch
+
+##### include를 통해 앱을 구분하는 것
+
+##### base.html 을 사용해서 세부내용 채우는 것
+
+
+
+네임을 설정하는 이유 :
+
+ URL에 접근할 때 용이하기 위해?
+
+
+
+```
+code intro/ vs코드를 들어가서 자동으로 열 수 있다.
+```
+
+
+
+name을 하는 이유는  url 경로를 간편화하기위해서! 한다.
+
+---
+
+## Django 02
+
+
+
+![image-20200819093148964](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819093148964.png)
+
+
+
+# 모델이 하는 일
+
+![image-20200819093553169](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819093553169.png)
+
+- 장고는 모델을 통해서 데이터에 접속하고 관리한다.
+
+  MODEL 과 DATABASE는 정확하게 이야기하면 다르다.
+
+  모델이 Database를 관리를 한다.
+
+  
+
+![image-20200819093659883](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819093659883.png)
+
+
+
+##### 데이타의 기본 구조 
+
+> 스키마와 테이블! (엑셀시트라고 생각하자)
+
+![image-20200819093913868](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819093913868.png)
+
+> DB가 여러테이블을 담고있다.
+
+![image-20200819094044592](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819094044592.png)
+
+> 테이블은 열과행으로 이루어짐
+
+
+
+![image-20200819094115510](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819094115510.png)
+
+> 널은 값이없음
+>
+> 열 == 필드
+
+![image-20200819094150885](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819094150885.png)
+
+> 행은 레코드
+>
+> 4개의 레코드가 존재한다. id.name은 미포함
+
+![image-20200819094246180](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819094246180.png)
+
+>  PK 는 1234를 말하고 기본키라 이야기한다. 반드시 있어야 한다 왜냐하면 접근하기 요이하고 이름이 중복된 경우 2개의 데이터가 나오기 때문에 정확성이 떨어진다.
+>
+>  그래서 각 레코드에는 고유값인 Primary Key를 사용한다.
+
+![image-20200819094417856](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819094417856.png)
+
+> 데이터베이스의 구성!
+
+### Model
+
+- 어떻게 작성할 것인가?
+- 어떻게 저 데이터베이스를 조작할 것인가?
+
+
+
+#### ORM
+
+![image-20200819094507120](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819094507120.png)
+
+> 객체 지향 프로그래밍 언어
+>
+> DB - SQL
+>
+> DJango - Python 으로 조작
+>
+> DJango가 DB 조작
+>
+> Python으로 SQL를 사용하기 위해 필요한 것이 ORM이다.
+>
+> 
+
+![image-20200819094658473](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819094658473.png)
+
+>  ORM의 동작 모습을 가시화.
+>
+>  우리는 ORM 덕분에 PYTHON으로만 조작하면 된다
+>
+>  SQL부분은 ORM이 모두 관리함.
+
+- 모델에서는 클래스를 중심으로 사용할 것이다.
+
+![image-20200819094913248](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819094913248.png)
+
+> ORM 장점
+>
+> 속도는 빠르나 , 디버깅이 어렵고 유지보수가 어렵다.
+>
+> ORM을 쓰는 이유는 생산성!
+>
+> 우리는 DB를 객체로 조작하기 위해서 ORM을 사용한다.
+
+  
+
+![image-20200819095514130](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819095514130.png)
+
+> 깃베쉬에서 빠르게 생성가능하다.
+
+
+
+#### 실습!
+
+앱 생성과 등록을 한후
+
+모델에서 class 를 생성한다.
+
+이름은 앱이름의 단수형으로 작성한다!
+
+![image-20200819100127262](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819100127262.png)
+
+
+
+![image-20200819100502925](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819100502925.png)
+
+> 이 하는 일은 
+
+![image-20200819100408814](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819100408814.png)
+
+> 이곳에서 확인 가능하다.
+>
+> 우리는 상속을 받아서 편하게 작성중이다.
+
+
+
+![image-20200819101400059](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819101400059.png)
+
+> 대표적으로 사용하는 함수들이다.  암기 필수!!
+
+## 중간 정리!
+
+- charField(max_length=None)
+
+  - 길이의 제한이 있는 문자열을 넣을 때 사용
+  - max_length가 필수인자
+  - 필드의 최대 길이, 데이텅베이스와 django의 유효성검사에서 사용
+  - input type text라는 값으로 출력
+
+- TextField()
+
+  - 글자의 수가 많을 때 사용
+
+  - <textarea> 
+
+- DateTimeField()
+
+  - 최초 생성일자 : auto_now_add = True
+    - django ORM이 최초 데이터 입력시에만 현재 날짜와 시간으로 갱신
+    - 테이블에 어떤 데이터를 최초로 넣을 때
+  - 최종 수정일자 :  auto_now = True
+    - django ORM이 save를 할 때마다 현재 날짜와 시간으로 갱신
+
+  ---
+
+  ### Migrations
+
+  - makemigrations
+  - 모델을 활성화하기전에 db설계도를 작성
+  - 생성된 마이그레이션 파일은 데이터베이스 스키마를 위한 버전관리 시스템이라고 생각.
+
+  
+
+  #### migrate
+
+  - 작성된 마이그레이션 파일들을 기반으로 실제 DB에 반영
+  - db. sqlite3라는 데이터베이스 파일에 테이블을 생성하는 작업
+  - 모델에서의 변경 사항들과 DB의 스키마가 동기화를 이룸
+
+  
+
+  #### sqlmigrate
+
+  - 해당 마이그레이션 파일이 SQL문으로 어떻게 해석되어서 동작할지 미리 확인하기위한 명령어
+
+  
+
+  #### showmigrations
+
+  - 마이그레이션 파일들의 migrate 여부를 확인하기 명령어
+
+  ## Model 의 중요 3단계
+
+  1. models.py : 변경사항 발생
+  2. makemigrations : 마이그레이션 (설계도) 만들기
+  3. migrate : DB에 적용
+
+  
+
+  ![image-20200819111553590](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819111553590.png)
+
+
+
+#### 오늘의 가장 중요한 핵심 : Migrations
+
+>  모델에 생긴 변화를 데이터베이스에 반영하는 방법.
+
+![image-20200819104034380](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819104034380.png)
+
+![image-20200819104101102](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819104101102.png)
+
+> makemigraions는 마이그레션을만들때 사용한다는 것에서 마이그레이션이 설계도를 뜻한다.
+
+>  migrate
+
+- 마이그레이션을 DB에 반영하기 위해 사용에서는 테이블을 생성한다는 것을 알아야한다.
+
+> 위에 두가지  명령어는 반드시 알아야한다.
+
+![image-20200819104819008](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819104819008.png)
+
+> 입력하면
+
+![image-20200819104828308](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819104828308.png)
+
+> 자동으로 생성이된다.
+
+이부분 복습이 필요하다.
+
+
+
+번역된 sql을확인하기 위해선
+
+![image-20200819104947794](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819104947794.png)
+
+> 이 명령어를 사용한다.
+
+![image-20200819105017060](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819105017060.png)
+
+![image-20200819105128709](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819105128709.png)
+
+> db위치.
+
+##### 모델에 변경사항을 줘보자
+
+마이그레이션은 모델의 변경사항을 반영한다!!
+
+한번 모델에 변경사항을 줘보자
+
+모델에수정사항이 생겼다면
+
+python manage,py makemigrations를 작성해준다!
+
+
+
+결과는
+
+![image-20200819105535076](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819105535076.png)
+
+> 새로운 migration가 만들어진다. 점점 쌓아나가진다.
+
+# migrate
+
+![image-20200819105711325](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819105711325.png)
+
+> 입력을 하면 db.sqlite3가 만들어진다.
+
+
+
+
+
+# DB API
+
+![image-20200819111931100](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819111931100.png)
+
+> dB를 편하게 조작할수 있도록 도와준다
+
+![image-20200819111903901](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819111903901.png)
+
+> all 이란 것은 API 
+>
+> 장고에 있는 기능이 아니다
+>
+> 이를 사용하기 위해 Django 클래스에 objects라는 Manager를 추가해서 사용한다.
+>
+> Quearyset
+>
+> 데이터 베이스로부터 전달받은 객체 목록인데
+>
+> 목록안에는 데이터가 없을 수도 있지만 데이터타입은 Queryset이다
+
+![image-20200819112341095](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819112341095.png)
+
+---
+
+송교수님
+
+![image-20200819124421194](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819124421194.png)
+
+
+
+---
+
+# 0819 오후 강의
+
+1.ipython 설치함
+
+2.django -extension 설치함
+
+3.installed_app에 등록을 시키고나서
+
+![image-20200819142041645](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819142041645.png)`
+
+4. 임포트를 받는다.
+5. 
+
+![image-20200819142119698](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819142119698.png)
+
+> QuerySet 안에있는 []를 []로 활용할 수 있다. 슬라이싱 가능!
+
+
+
+###	CRUD
+
+![image-20200819142501848](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819142501848.png)
+
+>  크루드는 db api로 조작을해보겠다.
+
+#### 1번 방법
+
+
+
+1. 인스턴스 생성! 
+
+![image-20200819142700260](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819142700260.png)
+
+2. 인스턴스로 클래스 변수 접근해 해당 인스턴스 변수 변경
+3. save()
+
+<img src="C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819143032281.png" alt="image-20200819143032281" style="zoom:80%;" />
+
+> 인스턴스로 세이브를 하면 object 의 None값이 (1)로 만들어진다.
+
+- 결과는 데이터베이스  db.sqlite3에 실제로 작성을 한 것이 된다.
+
+![image-20200819143445624](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819143445624.png)
+
+여기까지 데이터를 작성하는 첫번째 방법!이었다.
+
+> 확인방법
+>
+> pk 와 id는 동일하다!
+>
+> 장고에서는 pk를 사용해서 id를 확인한다.
+>
+> ![image-20200819144307761](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819144307761.png)
+
+---
+
+##### CREATE
+
+데이터를 작성하는 3가지방법
+
+###### 1 방법
+
+번쨰
+
+1. article = Article() : 모델 클래스로부터 인스턴스 생성
+2. article 인스턴스로 클래스 변수에 접근해 해당 인스턴스 변수를 변경(article.title = 'first')
+3. article.save() 메서드 호출> db에 실제로 저장이 끝
+
+
+
+##### 2 방법
+
+1. 클래스로 인스턴스 생성 시 keword인자를 함께 작성
+2. article = Article(titme = 'second', content = 'django!')
+3. article.save()메서드 호출
+
+
+
+###### 3방법
+
+1. create() 메서드를 사용하면 쿼리셋 객체를 생성하고 save하는 로직이 한번의 step으로 가능
+
+![image-20200819144710149](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819144710149.png)
+
+>   save를 하지않아도 된다.
+
+
+
+최종확인
+
+![image-20200819145216928](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819145216928.png)
+
+
+
+___
+
+## READ
+
+- all()
+  - QuerySet return
+  - 리스트는 아니지만 리스트와 거의 비슷하게 동작(조작할 수 있음.
+- get()
+  - 객체가 없으면 DoesnotExist에러가 발생
+  - 객체가 여러개일 경우는 'MultipleObjectRetrurned' 에러가 발생
+  - 위와 같은 특징을 가지고 있기 때문에 unique 혹은 Not Null특징을 가지고 있으면 사용할 수 있다.(예는 pk)
+- filter()
+  - 지정된 조회 매개 변수와 일치하는객체를 포함하는 QuerySet을 return
+
+---
+
+##  Update (어려움)
+
+1. 몇 번 글 수정? .get()
+
+<img src="C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819152907096.png" alt="image-20200819152907096" style="zoom:100%;" />
+
+
+
+## delete
+
+![image-20200819153215711](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819153215711.png)
+
+> 1번을 딜리트하면 다음에 적는 글은 1번에 올까 4번에 올까?
+
+![image-20200819153521000](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819153521000.png)
+
+> 정답은 4번이다. 이유는 삭제를 했기 때문에, 데이터베이스에서는 불필요하다고 판단한다. 따라서 재사용하지않는다!
+
+#### 여기까지가 DB API를 통해서 CRUD를 작성을 했다.
+
+
+
+## 관리자 계정 만들기
+
+![image-20200819154542250](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819154542250.png)
+
+![image-20200819155041717](C:/Users/aclass/Desktop/TIL/TIL/TIL.assets/image-20200819155041717.png)
+
+> 이것이 가능한 이유는 __str__을 설정했기 때문이고, 원래는 object로 표현이된다.
+
+앞으로 views.py에서 CRUD를 입력할 것이다.!
+
+
+
+
+
+## --- 0820
+
+페이지만들기
+
+![image-20200820102057303](C:\Users\aclass\AppData\Roaming\Typora\typora-user-images\image-20200820102057303.png)
+
+![image-20200820102109144](C:\Users\aclass\AppData\Roaming\Typora\typora-user-images\image-20200820102109144.png)
+
+![image-20200820102219781](C:\Users\aclass\AppData\Roaming\Typora\typora-user-images\image-20200820102219781.png)
+
+view 작성
+
+커뮤니티 게시판
+
+
+
+Article shell_plus CRUD
+
+csrf tokken 크로스 사이트 요청 위조
+
+![image-20200820114043633](C:\Users\aclass\AppData\Roaming\Typora\typora-user-images\image-20200820114043633.png)
+
+무슨일이 일어날까?
+
+정당한 토큰 없이 요청을 하면 403
+
+정당한 토큰을 요청하면 정당한 토큰이다/아니다
+
+
+
+정당한 토큰을 받으려면?
+
+/new/페이지로 들어와서 글을 써야만 토큰을 받을 수 있는 것이다.
+
+포스트 는 csrf를 필요로 한다.
+
+
+
+GET / POST
+
+GET - 요청을 아무리 여러번 해도 DB에 변화가 없는 요청 -검색,조회
+
+POST - 요청할때마다 DB에 변화가 일어나는 요청 - 글쓰기, 수정, 삭제
+
+아무나 db에 변경할 수 없도록 보안장치 - csrf token
+
+
+
+
+
+```
+client >> server
+server는 url을 
+include 는 urls.py 로 요청을 올린다. 
+articles url에서 sub는 url에서 파악한다.
+
+템플릿과 정보 혼합을 해서 보내는 것이 render가 된다.
+
+```
+
+모델 > 마이그레이트
+
+
+
+실제 데이터에 접근하고 싶다면Articles. objects.order.by
+
+![image-20200820134052089](C:\Users\aclass\AppData\Roaming\Typora\typora-user-images\image-20200820134052089.png)

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="text-left">INDEX</h1>
+    <a href="{% url 'articles:new' %}">NEW</a>
+      <br>
+    {% comment %} # 누르면 이동 {% endcomment %}
+    {% for article in articles %} 
+    {% comment %} <p1>글 번호: {{article.pk}}</p1> <hr> {% endcomment %}
+    <h1><p1>제목: {{article.title}}</p1></h1>
+    <p>내용: {{article.content}}</p>
+    <a href="{% url 'articles:detail' article.pk%}">DETAIL</a>
+    <hr>
+    {% endfor %}
+{% endblock content %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <h1 class="text-center">New</h1>
+  <form action="{% url 'articles:create' %}" method = "POST">
+  {% csrf_token %}
+  {% comment %} 정보를 받을 녀석한테 보내주기로 했다<div class=""></div> {% endcomment %}
+  <hr>
+  <label for="title">Title:</label>
+  <input type="text" name = "title" id = "title"> <br>
+  <label for="content">Content:</label>
+
+  <textarea name="content" id="content" cols="30" rows="10"></textarea><br>
+  <input type="submit" value="글 쓰기"> 
+  
+  </form>
+  <a href="{% url 'articles:index' %}">BACK</a>
+{% endblock content %}
