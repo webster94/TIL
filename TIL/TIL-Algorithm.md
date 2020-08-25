@@ -226,7 +226,9 @@ print(str,type(str))
 
 고지식한 방법..
 
-잘 모르겠군
+잘 모르겠군 
+
+이제 보니 알았다!! 
 
 ![image-20200824152747887](TIL-Algorithm.assets/image-20200824152747887.png)
 
@@ -266,10 +268,12 @@ print(a is c ) false  (id가 다르기 때문에, 서로 다른 객체이다.)
 
 알고리즘
 
-- 고지식한 패턴 검색 알고리즘
-- 카프-라빈 알고리즘
-- KMP 알고리즘
-- 보이어-무어 알고리즘
+- 고지식한 패턴 검색 알고리즘 ```okey!```
+- 카프-라빈 알고리즘```x```
+- KMP 알고리즘```x```
+- 보이어-무어 알고리즘```x```
+
+> 고지식한  패턴 검색 알고리즘만 알겠따 ㅎㅎ 0825
 
 
 
@@ -285,24 +289,178 @@ print(a is c ) false  (id가 다르기 때문에, 서로 다른 객체이다.)
 
 오늘 현우랑 공부할 것.
 
-1. 완전탐색 
+1. 완전탐색  ㅁ 
 
-2. 사전으로 풀어보기.
+2. 사전으로 풀어보기.ㅁ 
 
    - 사전으로 숫자들이 몇개인지 기입하는 논리
 
    - 흐름
 
-     - dictionary 선언
+     - dictionary 선언  bin[i] = bin.get(i,0)=1 을 하면 내가 원하는 사진에 값의 개수 를 부여할 수 있었다.
      - for문을  words 다돌리기
      - 요소를 키값에 넣고 중복된 키값의 개수를 count
      - 0부터 개수만큼 나열
 
      
 
-     현우 스터디 강조사항
+     현우 스터디 강조사항 ㅁ 
 
+     > 제목은 영어!  파일위치확인에 문제가 발생할 수 있다.
+     
      
 
-3. 달력문제
+
+# 알고리즘 
+
+> 0825  = 오늘은 하루종일 숫자나열, 고지식한 패턴분석, 회순1,2 문제 풀었다..
+
+![image-20200825093036608](TIL-Algorithm.assets/image-20200825093036608.png)
+
+>  GNS 문제 풀이 
+
+파이참 단축키
+
+```
+시프트 엔터 내려감
+
+컨트롤 d 복사
+
+alt + shift 방향키 = 움직임
+
+control + y 잘라냄
+
+자동들여쓰끼 = control art + l
+
+
+
+- 회문 2개
+- 
+```
+
+- sort()와 sorted의 차이
+
+  > 원본을 수정하느냐 마느냐의 차이이다.
+  >
+  > sort()가 원본을 수정하고 sorted는 원본을 수정하지않고 정렬만 해준다.
+
+---
+
+> 20200824일에 고지식한 패턴 검사를 배웠다면
+>
+> 20200825일은 벽만드는 법을 배우겠다.
+
+- 벽만드는 것
+
+```
+T = int(input())                                    # tc개수
+
+def pal_check(line):                                # 회문 체크 수업시간함수
+    for idx in range(len(line) // 2):
+        if line[idx] != line[-idx - 1]:
+            return False
+    return True
+
+for tc in range(1, T + 1):
+    N, M = map(int, input().split())
+    found = False                                   # 루프 깨줄 변수
+    arr = [list(input()) for _ in range(N)]
+    print('#{}'.format(tc), end = " ")
+    for i in range(N):
+        for j in range(N - M + 1):
+            sample = arr[i][j:j + M]                # 가로
+            sample2 = [a[i] for a in arr[j:j + M]]  # 세로
+            if pal_check(sample):                   # 가로에서 회문 찾을 경우
+                print(''.join(sample))              # 하나로 합쳐주기
+                found = True                        # 찾았다
+                break
+            elif pal_check(sample2):                # 세로에서 회문 찾을 경우
+                found = True                        # 찾았다
+                print(''.join(sample2))
+        if found:                                   # 회문 1개뿐이므로 찾았으면 루프 깨주기
+            break
+
+```
+
+```python
+GNS
+num_list = ["ZRO ", "ONE ", "TWO ", "THR ", "FOR ", "FIV ", "SIX ", "SVN ", "EGT ", "NIN "]
+num_dict = {"ZRO": 0, "ONE": 1, "TWO": 2, "THR": 3, "FOR": 4, "FIV": 5, "SIX": 6, "SVN": 7, "EGT": 8, "NIN": 9}
+
+T = int(input())
+
+for tc in range(1, T + 1):
+    a, b = input().split()
+
+    arr = list(input().split())
+
+    cnt = [0] * 10
+
+    for key in arr:
+        cnt[num_dict[key]] += 1
+
+    print("#{}".format(tc))
+
+    for i in range(10):
+        print(num_list[i] * cnt[i], end="")
+    print()
+```
+
+```python
+행렬찾기
+
+#행렬의 사이즈를 찾는 함수
+def search_size(r, c):
+    r_cnt = 0
+    c_cnt = 0
+
+    for i in range(r, N + 2):
+        if arr[i][c] == 0:
+            break
+        r_cnt += 1
+    for j in range(c, N + 2):
+        if arr[r][j] == 0:
+            break
+        c_cnt += 1
+
+    ans.append([r_cnt, c_cnt])
+
+    init(r, c, r_cnt, c_cnt)
+
+#구한 행렬을 0으로 초기화 시키는것
+def init(r, c, r_cnt, c_cnt):
+    for i in range(r, r + r_cnt):
+        for j in range(c, c + c_cnt):
+            arr[i][j] = 0
+
+
+T = int(input())
+
+for tc in range(1, T + 1):
+
+    N = int(input())
+
+    #전체적인 띠를 두르는 작업
+    arr = [0] * (N + 2)
+    arr[0] = arr[N + 1] = [0] * (N + 2)
+
+    for i in range(N):
+        arr[i + 1] = [0] + list(map(int, input().split())) + [0]
+
+    ans = []
+
+    for i in range(1, N + 2):
+        for j in range(1, N + 2):
+            if arr[i][j] != 0:
+                search_size(i, j)
+
+    #정렬, 행렬크기 기준, 같다면 행크기 기준
+    ans = sorted(ans, key=lambda x: ((x[0] * x[1]), x[0]))
+
+    print("#{} {}".format(tc, len(ans)), end=" ")
+    for i in range(len(ans)):
+        print("{} {}".format(ans[i][0], ans[i][1]), end=" ")
+
+    print()
+```
 
