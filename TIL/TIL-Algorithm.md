@@ -464,3 +464,348 @@ for tc in range(1, T + 1):
     print()
 ```
 
+---
+
+# 알고리즘 강의 3일차
+
+> 0826
+
+- 오늘의 핵심은 DFS!
+
+![image-20200826095122576](TIL-Algorithm.assets/image-20200826095122576.png)
+
+> 스택, 재귀호출, DFS를 확실하게 알아야한다!!
+
+
+
+스택의 특성
+
+> ​	물건을 쌓아 올리듯 자료를 쌓아 올린 형태0의 자료 구조이다.
+>
+> ex ) 접시를 쌓아 올린 구조!
+>
+> 2차원 배열은 내가 적은 코드의 줄에 비례한다.. 공감!
+
+
+
+
+
+스택의 구현
+
+> 빈 스택에 원소 ABC를 차례로 삽입 후 한 번 삭제하는 연산과정
+>
+> top = -1 을 가리킨다 
+>
+> 삽입할때는 top에 하나 올리고 그자리에다가 arr[top] = 'a' 넣고
+>
+> 삭제할 때는 top를 하나 내리고 pop을 한다.
+
+![image-20200826101957221](TIL-Algorithm.assets/image-20200826101957221.png)
+
+> 파이썬의 pop 알고리즘
+
+stack = []
+
+```
+## 괄호 검색기
+def check(arr):
+    for i in range(len(arr)):
+        if arr[i] == '(' : # push실시 push는 append~
+            stack.append(arr[i])
+        elif arr[i] == ')': # pop하고 비교 , 이때 비엇나 확인하기!!
+            if len(stack) == 0:
+                return False
+            else:
+                stack.pop()
+    if stack  : return False  # 괄호에 남아있으면 False! 그렇지않으면 TRUE
+    else: return True
+
+
+
+
+stack = []
+arr = "()()((()))"
+print(check(arr))
+
+```
+
+---
+
+- 함수 호출
+
+![image-20200826105359476](TIL-Algorithm.assets/image-20200826105359476.png)
+
+함수는 시스템에 후입선출로 저장된다.
+
+
+
+
+
+- 재귀
+
+![image-20200826111106817](TIL-Algorithm.assets/image-20200826111106817.png)
+
+오전 강의 종료 김한욱 교수님 수고하셨습니다
+
+----
+
+오후 양명균 교수님 리뷰
+
+- 스택 
+
+  > 물건을 쌓아 올리듯 자료를 쌓아 올린 형태의 자료구조이다.
+
+  >  선형구조와 비선형 구조를 갖는다.
+  >
+  > LIFO 후입선출
+
+- pop
+
+꺼낼께 있어야 꺼낸다.
+
+따라서 0일 경우 return 0을 하거나 non을 표시해준다.
+
+s.pop(-1) 또는 s.pop(0)을 사용해서 스택의 맨위에 있는 것을 삭제한다.
+
+
+
+
+
+스택은 파이썬스타일(추가하는 append)와 c언어 스타일(스택을 넉넉하게 미리 설정하는 방법)이 있다.
+
+메모장
+
+```
+push//pop
+
+def push():
+
+top += 1
+
+ return 
+
+def pop():
+
+if len(s) == 0:
+
+​	return None
+
+else:
+
+top -=1
+
+return pop()
+
+
+```
+
+
+
+
+
+0826 알고리즘오후 김한욱 교수님
+
+---
+
+### Memoization
+
+> 메모이제이션!!
+
+
+
+![image-20200826141420277](TIL-Algorithm.assets/image-20200826141420277.png)
+
+
+
+# DP  (오늘의 핵심)
+
+![image-20200826143124626](TIL-Algorithm.assets/image-20200826143124626.png)
+
+![image-20200826143627195](TIL-Algorithm.assets/image-20200826143627195.png)
+
+dp 예
+
+![image-20200826143942854](TIL-Algorithm.assets/image-20200826143942854.png)
+
+> 재귀는 함수로 되어잇지만 db는 for문으로 되어있다.
+
+![image-20200826164702405](TIL-Algorithm.assets/image-20200826164702405.png)
+
+>  다른 예.
+
+# *오늘의 핵심!! 교수님 풀강조했따.*
+
+![image-20200826150104851](TIL-Algorithm.assets/image-20200826150104851.png)
+
+> 선형구조 : 배열
+
+1. 표현 : 메모리에 저장  표현하는 방법이 다르다. 
+   - **인접 행렬로 표현하는 방법**
+   - **인접 리스트**
+   - 간섭의 배열
+2. 순회: DFS BFS 두가지 방법이있다.
+
+![image-20200826151119988](TIL-Algorithm.assets/image-20200826151119988.png)
+
+> G = grapht
+>
+> 시작 정점  =V
+>
+> 정점 주변   W 
+
+![image-20200826152142117](TIL-Algorithm.assets/image-20200826152142117.png)
+
+![image-20200826153354069](TIL-Algorithm.assets/image-20200826153354069.png)
+
+연필로 그려가보면서 하자.
+
+연습문제1
+
+![image-20200826153545712](TIL-Algorithm.assets/image-20200826153545712.png)
+
+7 8 
+
+1 2 1 3 2 4 2 5 4 6 5 6 6 7 3 
+
+---
+
+보충 tip !!
+
+알파벳을 문자열로 변환할때 유용한 방법임
+
+문자 >> 인트로 맵핑하기 위한 문자열
+
+arr = list(input()) 한줄 읽고, 리스트로 변환(문자)
+
+![image-20200826192204723](TIL-Algorithm.assets/image-20200826192204723.png)
+
+내가 찾고싶은 문자열을 리스트로 만들어서 만들수있다.!
+
+![image-20200826192959101](TIL-Algorithm.assets/image-20200826192959101.png)
+
+
+
+- 2차원 배열!
+
+  
+
+N,M = map(int,input().split())
+
+mylist = [0 for i in range(N)] # 1차원 배열 초기화
+
+list(map(int,input().split()))  # 1차원 배열 입력받아서 >> 리스트(1차원)로 이동
+
+mylist[0] = list(map(int,input().split()))
+
+mylist[0] = list(map(int,input().split()))
+
+mylist[0] = list(map(int,input().split()))
+
+> > for i in range(N)"
+> >
+> > mylist[i] = list(map(int,input().split()))
+>
+> > > 
+
+
+
+파리채
+
+```
+T = ``int``(input())
+for` `t in range(1,T+1):
+  ``N,M = list(map(``int``,input().split()))
+  ``flys = [[``int``(x) ``for` `x in list(map(``int``,input().split()))] ``for` `_ in range(N)] # 대입완료
+  ``maxfly = 0
+  ``for` `i in range(N-M+1):
+    ``for` `j in range(N-M+1):
+      ``totalfly = 0
+      ``for` `a in range(M):
+        ``for` `b in range(M):
+          ``totalfly += flys[i+a][j+b]
+        ``if` `maxfly < totalfly:
+          ``maxfly = totalfly
+  ``print(f``'#{t} {maxfly}'``)
+```
+
+잘배워간다 채린
+
+```
+T = int(input())
+for t in range(1,T+1):
+    # 먼저 파리부터 입력을 받자.
+    N , M = map(int,input().split())
+    flies = []
+    for i in range(N):
+        flies.append(list(map(int,input().split())))
+    # 파리가 이제 채에 올라왔다. 잡으러가야지!
+    killed = []
+    for i in range(N-M+1):
+        for j in range(N-M+1):
+            total = 0
+            for k in range(M):
+                total += sum(flies[i+k][j:j+M])
+            killed.append(total)
+    print(max(killed))
+```
+
+```
+​```python
+for tc in range(1, TC+1): #case를 받고, 
+    N, M = map(int, input().split()) #n,m을 각각 받는다
+    result = [] #펠린드롬을 받을 result
+
+    #가로줄 확인
+    Garo_lst = [] #1 가로 빈리스트에 data를 넣는다
+    for i in range(N): #2
+        Data = input() 
+        Garo_lst.append(Data) 
+        for i in range(len(Data)-M+1):#4 가로줄 체크! 
+           if Data[i:M+i] == Data[i:M+i][::-1]:#5
+            result.append(Data[i:M+i])
+
+    #세로줄 확인
+    Sero_lst = [] #6  빈리스트와 빈 문자열
+    Sero_sub_lst = ''#7
+    for x in range(N): #8  n을 한번에 돌리네
+        for y in Garo_lst:#9 문자열의 행
+            Sero_sub_lst += y[x] #10  에 열을 넣고 
+        Sero_lst.append(Sero_sub_lst) #11 
+        Sero_sub_lst ='' #12
+
+    for sero_data in Sero_lst:
+        for j in range(len(sero_data)-M+1):
+            if sero_data[j:M+j] == sero_data[j:M+j][::-1]:
+                result.append(sero_data[j:M+j])
+
+    # print(result)
+    print("#%d %s"%(tc, result[0])) #13
+​```
+
+#1 : Garo_lst를 만들어줌, 이 리스트는 나중에 컬럼대로 뽑을때 사용할려고 만든거임
+
+#2 : N만큼 돌면서, 한줄한줄 문자열을 입력받고, 미리 만들어놓은 Garo_lst에 추가한다.
+
+#3 : 한 행의 길이 len(Data)에서 찾아야할 패턴의 길이인 M을 빼주고 +1을 더해준다.
+
+#4 : 한행씩 보면서 i번째부터 i+M까지 자른 문자열이 뒤에서 읽은 것과 같다면 그건 펠린드롬이기 때문에
+
+#5 : result에 담아놓는다
+
+#6 : 이제 세로줄을 확인해야하는데, 일단 Garo_lst처럼 Sero_lst를 만들어줘야 한다.
+
+#7 : 칼럼대로 쭉 읽어서 저장할 Sero_sub_lst를 만들어주고
+
+#8 : 세로길이 만큼 돌면서(세로로 도는거임)
+
+#9 : 미리 만들어놓은 가로 리스트를 돌면서(아래로 하나씩)
+
+#10 : Sero_sub_lst에다가 세로로 읽은 칼럼을 쭉 뽑아서 저장할건데, 이게 헷갈렸다. 이중 for문은 두번째로 들어가는 for문이 일을 많이하는거다. 여기서 0번째 칼럼일때 가로행이 계속 바껴져야한다. 
+
+#11 : 다 뽑았으면 미리 만들어놓은 Sero_list에 저장하고
+
+#12 : 중간정산 변수인 Sero_sub_lst는 초기화한다. 
+
+#13 : !!!!만약에 result=['abcde'] 형태로 되어있는데 'abcde' 형태의 문자열로 뽑을려면 result[0] 하면 됨.나중에도 써야징
+```
+
