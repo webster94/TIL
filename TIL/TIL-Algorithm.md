@@ -809,3 +809,172 @@ for tc in range(1, TC+1): #case를 받고,
 #13 : !!!!만약에 result=['abcde'] 형태로 되어있는데 'abcde' 형태의 문자열로 뽑을려면 result[0] 하면 됨.나중에도 써야징
 ```
 
+```
+글자 찾기
+---
+T = int(input())
+for t in range(1,T+1):
+    str1 = input()
+    str2 = input()
+    if (str2.find(str1)) >0:
+        print(f'#{t} {1}')
+    else:
+        print(f'#{t} {0}')
+---내가 푼것
+#교수님 방법1.
+    	ans = 0
+        if str2.find(str1) != -1:
+            ans = 1
+        print("{} {}".format(tc,ans))
+# 교수님 방법2.
+if ans
+```
+
+> 브루투방식으로 해봐야함!
+>
+> 델타 이동의 기본 내가 작성해봐야함..
+
+달팽이!
+
+```python
+#우 하 좌 상
+dr = [0, 1, 0, -1]
+dc = [1, 0, -1, 0]
+
+T = int(input()) # 입력받기
+
+for tc in range(1, T+1):
+    N = int(input())  #  N*N배열
+
+    arr = [[0] * N for _ in range(N)]   # 0배열 선언
+
+    d = 0 #방향 0 : 우 , 1 : 하, 2 : 좌 , 3 : 상   #방향
+    r = 0 # 좌표들
+    c = 0
+    num = 1 # 시작점
+
+    while num <= N * N:
+        arr[r][c] = num #현재칸에 값을 저장장
+        num += 1 # 다음 숫자 준비
+
+        #다음칸을 결정
+        nr = r + dr[d]
+        nc = c + dc[d]
+        if 0<= nr <N and 0 <= nc <N and arr[nr][nc] == 0:  # 위에서 우로 바뀔때 중요하다.
+            #현재좌표를 갱신
+            r, c = nr , nc
+        else:
+            d = (d+1)%4  # 방향임
+            r += dr[d]
+            c += dc[d]
+
+    print("#{}".format(tc))
+    for i in range(N):
+        for j in range(N):
+            print(arr[i][j], end=" ")
+        print()
+```
+
+
+
+---
+
+> 0827 
+>
+> 오늘은 달팽이만 봤다..
+
+```python
+# 달팽이 방향정하고
+# 입력받고
+# 초기화하고
+# 와일문으로 위치변경, 방향변경
+# 출력
+
+dr = [0,1,0,-1]
+dc = [1,0,-1,0]
+T = int(input())
+for t in range(1,T+1):
+    N = int(input())
+    arr = [ [0] * N for _ in range(N)]
+    num = 1 # 시작값
+    d= 0 # 방향전환 용
+    r = 0 # 좌표용 행
+    c = 0 # 좌표용 열 
+    while num < N*N:
+        arr[r][c] = num
+        num +=1
+        nr = r + dr[d]
+        nc = c + dc[d]
+        if 0 <= nr < N and 0 <= nc < N and arr[nr][nc] == 0:
+            r,c = nr,nc # 바뀐 위치로 최신화
+        else:# 아닐 경우 방향을 바꿔주자
+            d = (d+1)%4
+            r += dr[d]
+            c += dc[d]
+    print("#{}".format(t))
+    for i in range(N):
+        for j in range(N):
+            print(arr[i][j],end=' ')
+        print()
+```
+
+---
+
+0828 활용법
+
+DFS 스택
+
+```
+입력받자
+V,E = map을 통해 받고
+0번 괄호 만들어서
+st,end 포인트를 담는다.
+arr[st][ed] = arr[ed][st] ==1가 연결되었음을 표시
+
+빈 괄호에 담아서 기록을 한다.
+visited = []
+stack []
+stack.append(1)
+```
+
+
+
+
+
+
+
+미로 코드 짠 모습
+
+![image-20200828112240489](TIL-Algorithm.assets/image-20200828112240489.png)
+
+지워버리는 방법
+
+![image-20200828112650633](TIL-Algorithm.assets/image-20200828112650633.png)
+
+![image-20200828112626253](TIL-Algorithm.assets/image-20200828112626253.png)
+
+재귀
+
+![image-20200828112955601](TIL-Algorithm.assets/image-20200828112955601.png)
+
+농장물 풀기..
+
+회문 1,2
+
+사다리 1,2,
+
+달팽이 , 파리퇴치,
+
+주석달기!!
+
+
+
+
+
+문제푸는법!
+
+점화식 (문제들의 관계 찾아내기)
+
+재귀호출 ! 오래걸린다면 메모이제이션 추가
+
+반복! 
