@@ -978,3 +978,79 @@ stack.append(1)
 재귀호출 ! 오래걸린다면 메모이제이션 추가
 
 반복! 
+
+ #### 사전에서 내림차순 정렬하는 법
+
+![image-20200901002004757](TIL-Algorithm.assets/image-20200901002004757.png)
+
+# 9월 화이팅 !! 알고리즘
+
+![image-20200901101510679](TIL-Algorithm.assets/image-20200901101510679.png)
+
+> 부분집합 출력하기
+
+
+
+---
+
+0901 공부한 것은 부분집합과 순열의 차이이다.
+
+순열은 제시된 숫자에서 가능한 배열을 모두 나열한 것이고
+
+부분집합은 모든 집합을 나열한 것이다. 따라서, 코드의 차이는 부분집합은
+
+ 길이가 idx와 같아졌을 때, 포문을 돌려 visited가 1이 되는 모든 arr[i]를 출력한다.
+
+또한, visited 배열을 1로 만들고 다시 0을 만들어서 지나온 곳을 다시 갈 수 있도록 한다.
+
+
+
+순열은 다르다 순열은 n == k 가 같아졌을 때, 그 때의 sel(순열조합문장)만 프린트하고
+
+visited 가 1이 된 곳을 다시 가지않기 위해  함수호출을 적게 한다.
+
+
+
+아래의 코드를 참고하자.
+
+```python
+arr = [8,3,2]
+N = 3
+visited = [0] * N
+def powerset(n,k):
+    if n == k :
+        for i in range(n):
+            if visited[i]:
+                print(arr[i],end = " ")
+        print()
+    else:
+        visited[k] = 1
+        powerset(n,k+1)
+        visited[k] = 0
+        powerset(n,k+1)
+powerset(N,0)
+```
+
+> 모든 부분집합 출력
+
+``` python
+N = 3
+sel = [0] * N
+visited = [0] * N
+arr = [1,2,3]
+
+def perm(N,idx):
+    if N == idx:
+        print(sel)
+        return
+    for i in range(N):
+        if not visited[i] :
+            sel[idx] = arr[i]
+            visited[i] = 1
+            perm(N,idx+1)
+            visited[i] = 0
+perm(N,0)
+
+```
+
+>  순열 출력
