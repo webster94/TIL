@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class = "alert alert-success" role = "alert">
+<h4 class = "alert-heading" >영화목록</h4>
+<a href="{% url 'community:create' %}" class = "alert-link btn btn-secondary btn-lg active" role = 'button' aria-pressed = 'true'> 영화 리뷰 작성하기</a>
+
+{% for rev in review %}
+    <li>{{rev.pk}}<strong>번 영화</strong>
+        <p>제목 : {{rev.title}}</p>
+        <a href="{% url 'community:review_detail' rev.pk %}" class = "badge badge-success">상세페이지</a>
+    </li>
+
+    <hr>
+{% endfor %}
+</div>
+
+{% endblock content %}

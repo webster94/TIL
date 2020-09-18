@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form action="" method = "POST">
+{% comment %} # 여기 좀 몰랐다 {% endcomment %}
+      {% csrf_token %}
+    <div class = "alert alert-success" role = "alert">
+     {{form.as_p}}
+     </div>
+     <button class="btn btn-primary" type="submit">제출하기</button>
+    </form>
+
+{% endblock content %}

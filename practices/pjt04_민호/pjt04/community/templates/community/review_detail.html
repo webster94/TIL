@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+{% comment %} <a href=""></a> {% endcomment %}
+<h1>상세 조회</h1>
+<Ol> {{review.pk}}번 리뷰
+    <li>title = {{review.title}}</li>
+    <li>movie_title = {{review.movie_title}}</li>
+    <li>content = {{review.content}}</li>
+    <li>rank = {{review.rank}}</li>
+    <li>created_at = {{review.created_at}}</li>
+    <li>updated_at = {{review.updated_at}}</li>
+    <hr>
+</Ol>
+<a href="{% url 'community:review_update' review.pk %}">UPDATE</a>
+<hr>
+<form action="{% url 'community:review_delete' review.pk %}" method = "POST">
+{% csrf_token %}
+<button>DELETE</button>
+</form>
+<a href="{% url 'community:review_list' %}">BACK</a>
+{% endblock content %}
