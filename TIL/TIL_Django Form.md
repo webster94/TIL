@@ -637,5 +637,52 @@ class CustomUserChangeForm(UserChangeForm):
 
 
 
-# 오창희 교수님
+# 0921 댓글 만드는 법!
+
+> 송교수님
+
+작성자 _id - 외래키, Foreign key - 다른테이블의 데이터를 가져오기 위한 키다.
+
+```
+# 왜래키가 바당짐.
+class comment(models.Model):
+    article = models.ForeignKey(Article, on_delete = models.CASCADE)
+    # foreignkey라는 클래스를 받아온다. 위치인자는 2개 받아오는데 참조하는 클래스의 이름
+    content = models.CharField(max_length=200)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    # 알티클과 1:1관계를 갖는다
+
+    def __str__(self):
+        return self.content
+
+```
+
+python manage.py shell_plus
+
+exit()
+
+pip install ipython 을 다운받아 
+
+다시 작동시킨다.
+
+
+
+![image-20200921141938290](C:\Users\Minho\AppData\Roaming\Typora\typora-user-images\image-20200921141938290.png)
+
+> 저장방법
+
+comment.article.pk는 없고 comment.article_id로 
+
+comment.article.pk는 없다.
+
+![image-20200921142919997](C:\Users\Minho\AppData\Roaming\Typora\typora-user-images\image-20200921142919997.png)
+
+> 에러발생 꼭 
+>
+> article_id로 하잣
+
+
+
+
 
