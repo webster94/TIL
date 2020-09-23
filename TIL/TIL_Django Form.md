@@ -304,6 +304,10 @@ $ pip freeze > requirments.txt
 
 를 꼭해줘야한다
 
+가져올땐 
+
+pip install -r requirments.txt
+
 .gitignore를 만들어서 파일을 제거해준다.
 
 venv/
@@ -686,3 +690,58 @@ comment.article.pk는 없다.
 
 
 
+## 0923 1:N
+
+models.py에서 Ab뭐시기 상속을받고 아무것도 안하고있음
+
+UserCreationForm 모델폼을 상속받아서 사용하는 녀석인데 모델이 장고가 기본적으로 쓰는 유저를 사용하고있었어요 . 모델을 수정해야한다. model = 을 바꾸고
+
+email 추가로 받을 수 있게끔 설정한 것이다.
+
+모델스에서는 유저에 접근 할 때
+
+![image-20200923125312229](C:\Users\Minho\AppData\Roaming\Typora\typora-user-images\image-20200923125312229.png)
+
+settting.를 붙여야한다.
+
+나머지는 user_get_사용
+
+
+
+pip install l-r requirments.text
+
+
+
+유저모델참조하기
+
+![image-20200923144007006](C:\Users\Minho\AppData\Roaming\Typora\typora-user-images\image-20200923144007006.png)
+
+
+
+여기까지 1: N
+
+---
+
+
+
+
+
+M;M에 대해서 공부
+
+
+
+![image-20200923151049508](C:\Users\Minho\AppData\Roaming\Typora\typora-user-images\image-20200923151049508.png)
+
+
+
+오늘의 목표 (이루기 전까지 절때 안잔다)
+
+curd form,static, decorations까지 한번 제대로 작성해보고자자!!! 
+
+처음부터 deco까지!!! 2시간전까지 해보자
+
+내일은 처음부터 로그인까지
+
+내일모레는 처음부터 1:N!! 화이팅!
+
+하고 깃풀하고 취침
