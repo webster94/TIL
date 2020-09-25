@@ -20,6 +20,6 @@ for t in range(1,T+1):
                 break
             elif examine(sample2):
                 found = True
-                print(''.join(sample2))
+                print(''.join(sample2)
         if found:
-            break
+            brea

@@ -5,12 +5,16 @@ for t in range(1,T+1):
     N = int(input())
     arr = [list(map(int,input())) for _ in range(N)]
     x = N//2
+    s = x
+    e = x
     total = 0
     for i in range(N):
-        if i <= x:
-            for j in range(x-i,x+i+1):
-                total +=arr[i][j]
-        elif i > x:
-            for j in range(i-x,N-(i-x)):
-                total += arr[i][j]
+        for j in range(s,e+1):
+            total += arr[i][j]
+        if i < x:
+            s -=1
+            e +=1
+        else:
+            s +=1
+            e -=1
     print("#{} {}".format(t,total))
