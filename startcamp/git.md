@@ -119,3 +119,9 @@ $ git clone {가져오고자 하는 repo url}
 > 
 
 ![image-20200919011946430](C:\Users\Minho\AppData\Roaming\Typora\typora-user-images\image-20200919011946430.png)
+
+![image-20200928124804619](C:\Users\Minho\AppData\Roaming\Typora\typora-user-images\image-20200928124804619.png)
+
+>  commit에서 제거하는 방법.
+
+![image-20200928125052867](C:\Users\Minho\AppData\Roaming\Typora\typora-user-images\image-20200928125052867.png)

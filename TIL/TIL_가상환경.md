@@ -194,6 +194,8 @@ $ django-admin startproject pjt03 .
 1. 최종제출
 
 ```
+받아올 때
+pip install -r requirements.txt
 #패키지 요구사항 저장
 $ pip freeze > requirements.txt
 ```
