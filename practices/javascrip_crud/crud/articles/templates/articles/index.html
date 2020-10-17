@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .done{
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+    <input type="text">
+    <button> 제출</button>
+    <ul></ul>
+<script>
+    function addtodo () {
+    const myinput= document.querySelector('input')  // input을 가져와서
+    const content = myinput.value // 컨텐트에 집어넣은다음
+    const myli= document.createElement('li') // li를 생성해서
+    myli.innerText = content //문법을 모르네 // my li에 innnertext로 content를 넣었다.
+    myli.addEventListener('click', function(evnet){ // li에 줄을 그을거니깐
+        event.target.classList.toggle('done')
+    }) 
+    const deleteButton = decument.createElement('button')
+    button.innerText = 'X'
+    deleteButton.style.marginLeft = '10px'
+    li.appendChild(deleteButton)
+    deleteButton.addEventListener('click', function(event) {
+        li.remove()
+    })
+
+
+    
+    const myul = document.querySelector('ul') //ul을 가져와서
+    myul.appendChild(myli) // ul밑에 li를 집어 넣어줌
+    input.value = ''
+
+    }
+
+</script>
+</body>
+</html>
