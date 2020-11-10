@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<div id="app">
+  <select name="" id="text">
+    <option value="완료">완료</option>
+    <option value="진행">진행</option>
+    <option value="시작">시작</option>
+
+  </select>
+  <input type="text" id = 'text'>
+  <button @click = 'onclickinput'>+</button>
+  <ul v-for='todo in todolist'>
+  <li v-if= "todo.computed===true">
+    <input type="checkbox">완료: {{todo.title}}
+  </li>
+  <li v-else-if= 'todo.computed === "pending" '>
+     대기중 : {{todo.title}}
+  </li>
+  <li v-else>
+    미완료 : {{todo.title}}
+  </li>
+</ul>
+</div>
+<button>완료된 할일 지우기</button>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
+  <script>
+    const app = new Vue({
+      el : "#app",
+      data : {
+        todolist : [],
+      },
+      methods :{
+        onclickinput : function(res){
+          const input = document.querySelector('input')
+          const content = input.value
+          const Todos = {
+              title : content,
+              computed : true,
+          }
+          this.todolist.push(Todos)
+          input.value = ''
+        }
+
+      }
+    })
+
+  </script>
+</body>
+</html>

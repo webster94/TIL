@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id = "app">
+    <h2> Cat Image</h2>
+    <img :src="photodata" width ="200px" height="200px" alt="">
+    <hr>
+    <button @click = "clickphotopick"> Get Cat</button>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
+  <script>
+    const app = new Vue({
+      el : '#app',
+      data : { 
+        photodata : null,
+        
+      },
+      methods : {
+        clickphotopick : function() {
+          axios.get('https://api.thecatapi.com/v1/images/search').then((Response) =>{
+          this.photodata = Response.data[0].url
+          })
+        }
+      }
+    })
+  
+
+
+  </script>
+</body>
+</html>

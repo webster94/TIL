@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <input type="text" v-model = 'userInput' @keyup.enter = "addtodo">
+    <button @click="addtodo">+</button>
+    <br>
+    <button @click="deleteCompleted"> 완료된 할 일 지우기</button>
+    <ul>
+      <li v-for = "todo in todos">
+        <input type="checkbox" v-model= "todo.isCompleted">
+        {{todo.content}}
+      </li>
+    </ul>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el : "#app",
+      data : {
+        userInput : '',
+        todos : [
+          {content:'건강설문', isCompleted:false},
+          {content:'홈워크', isCompleted:true},
+
+        ],
+      },
+      methods:{
+        addTdo: function(){
+          this.todos.push({
+            content:this.userInput,
+            isCompleted:false
+          })
+          this.userInput = ''
+
+        },
+        deleteCom
+      }
+    })
+  </script>
+</body>
+</html>
