@@ -8,7 +8,9 @@ Vuex
 
 ![image-20201113103632011](C:%5CUsers%5CMinho%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201113103632011.png)
 
-![image-20201113103748309](C:%5CUsers%5CMinho%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201113103748309.png)
+![image-20201113103748309](C:%5CUsers%5CMinho%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201113103748309.png) 
+
+
 
 ![image-20201113104139388](C:%5CUsers%5CMinho%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201113104139388.png)
 
@@ -419,3 +421,8 @@ action 사용
    state.count++
 
    context.commit('increment')
+
+1.T
+
+vuex가 뭐하는 앤지 작성해서 올린다
+

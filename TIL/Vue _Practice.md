@@ -59,3 +59,4 @@ view순서
 1.T,F,F 단방향이 아니다.
 
 3 . v-for, v-if, num
+
