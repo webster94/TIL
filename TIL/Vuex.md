@@ -404,25 +404,5 @@ index에서 가져옴!
 
 ![image-20201113155538509](Vuex.assets/image-20201113155538509.png)
 
-11.13 금요일
 
-홈워크
-
-2.
-
-action  비동기적인 것도 들어감
-
-mutation 만으로 해결이안된다
-
-action 사용
-
-3. vuex.$store
-
-   state.count++
-
-   context.commit('increment')
-
-1.T
-
-vuex가 뭐하는 앤지 작성해서 올린다
 
