@@ -1,0 +1,501 @@
+2. Layout 고치기
+3. ~~번호 만들기~~ 지해누님에게 인계
+4. ~~프로필 API 통신~~ 
+
+5. 로그인 막기
+
+1. ~~checkbox 문제~~
+
+   
+
+2. ~~이메일 중복확인 수정~~
+
+3. ~~비밀번호 변경창 생성~~
+
+4. ~~이미지 불러오기~~  
+
+5. ~~로그인 시 토큰문제!  자동 로그인 할 때 토큰 확인 > 로그아웃 확인 > 로그인 토큰 확인!~~
+
+6. 로그인 시 토큰을 
+
+468112
+
+```
+EmailAuthorization - 
+	await AsyncStorage.setItem('email', userEmail);
+	
+Home - AsyncStorage.setItem('jwt', RefreshToken);
+ Login - AsyncStorage.setItem('jwt', res.data.token);
+ Signup -     AsyncStorage.setItem('username', userName);
+        AsyncStorage.setItem('password', userPassword);
+        AsyncStorage.setItem('password_confirmation', userPasswordchk);
+ Pin -   AsyncStorage.setItem('pin_code', userPinNumber);
+      AsyncStorage.setItem('pin_code_confirmation', userPinNumberchk);
+      `
+      
+      AsyncStorage.setItem('ProfileYear', year);
+      AsyncStorage.setItem('ProfileName', Name);
+```
+
+```
+'email' , 'jwt' , 'username' ,  'password' , 'password_confirmation' ,'pin_code', 'pin_code_confirmation' ,'ProfileYear','ProfileName'
+```
+
+```
+if (userEmail.length > 8) {
+      let emailAuthForm = new FormData();
+      console.log(userEmail);
+      emailAuthForm.append('email', userEmail);
+      await AsyncStorage.setItem('email', userEmail);
+      confirmEmail(
+        emailAuthForm,
+        (res) => {
+          const temp = res.data['인증코드'];
+          if (temp === undefined) {
+            alert('이미 가입된 이메일입니다.');
+          } else {
+            setemailAuthNumber(temp);
+            alert('인증번호를 보냈습니다');
+          }
+        },
+        (error) => {
+          alert('이미 가입한 이메일입니다');
+          console.log(error);
+        },
+      );
+    } else {
+      alert('이메일 형식이 아닙니다');
+    }
+  };
+```
+
+> 이메일 수정
+
+![image-20210331004330017](C:\Users\multicampus\Desktop\TIL\21-03-30 문제.assets\image-20210331004330017.png)
+
+python -m venv venv source venv/Scripts/activate pip install - r requirements.txt python manage.py runserver
+
+로그인 시 토큰 문제 해결!!
+
+
+
+```
+// 헤더 = {header : { Authorization : `jwt 토큰`}}
+//GET -> .get(`apiurl`, 헤더)
+//POST -> .post(`apiurl`, data, 헤더)
+//PUT -> .put(`apiurl`, data, 헤더)
+//DELETE -> .delete(`apiurl`, 헤더)
+
+
+function getTodo(todono, success, fail) {
+    instance
+    .get(`todos/${todono}`, 
+         {headers : {
+             Authorization : `jwt ${localStorage.getItem('jwt')}`
+                 }
+         })
+    .then(success)
+    .catch(fail);
+}
+
+function writeTodo(todo, success, fail) {
+    instance
+    .post('todos/', todo,{headers : {
+    Authorization : `jwt ${localStorage.getItem('jwt')}`
+  } })
+    .then(success)
+    .catch(fail);
+
+}
+
+function ModifyTodo(todono, todoitem, success, fail) {
+    instance
+    .put(`todos/${todono}/`, todoitem, {headers : {
+        Authorization : `jwt ${localStorage.getItem('jwt')}`
+      } })
+    .then(success)
+    .catch(fail);
+
+}
+
+function deleteTodo(todono, success, fail) {
+    instance
+    .delete(`todos/${todono}`, {headers : {
+        Authorization : `jwt ${localStorage.getItem('jwt')}`
+      } })
+    .then(success)
+    .catch(fail);
+}
+```
+
+
+
+1. 회원가입 로그인 할 떄 모달처리안되는거
+2. 이메일 중복확인
+3. 자동로그인 로직 마운트로 바꾸기
+4. 로그인 할 때 header 토큰 문제
+5.  
+
+
+
+1이메일 전송 메일 확인 모달
+
+2. 비밀번호 알파벳 대,소문자 구분 모달
+
+
+
+
+
+User 2 .
+
+- username : dinory1 
+
+- password : 1q2w3e4R
+- id : 60
+- token : 
+  - yJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo2MCwidXNlcm5hbWUiOiJkaW5vcnkxIiwiZXhwIjoxNjE4NTM1NjM2LCJlbWFpbCI6ImVlcXdlcjEyM0BkYXVtLm5ldCIsIm9yaWdfaWF0IjoxNjE3MjM5NjM2fQ.GID1UrTxs8HY2x8LCgufUs1NXVhVGCll3Hl0jTdpTQA
+- child
+  {
+      "id": 65,
+      "name": "dinory",
+  },
+  {
+      "id": 66,
+      "name": "dinoree",
+  },
+  {
+      "id": 67,
+      "name": "dinoring",
+  {
+      "id": 68,
+      "name": "dinoly",
+  }
+  {
+      "id": 69,
+      "name": "dinolly",
+  }
+
+
+
+
+
+### 1. EmailAuthorization.js
+
+ const Authenticate = async () => {
+    if (userWriteEmail.length > 8) {
+      let emailAuthForm = new FormData();
+      emailAuthForm.append('email', userWriteEmail);
+      await AsyncStorage.setItem('email', userWriteEmail);
+      // 이메일 중복 확인!
+      confirmEmail(
+        emailAuthForm,
+        (res) => {
+          TransmitCodeToEmail(
+            //인증 번호 전송
+            emailAuthForm,
+            (res) => {
+              setUserTicket(res.data['id']);
+              //번호표 저장
+              **인증번호를 보냈습니다 << 모달**
+            },
+            (error) => {
+              console.log(error);
+            },
+          );
+        },
+        (error) => {
+          console.log(error);
+          **이미 등록된 메일입니다 << 모달
+        },
+      );
+    }
+  };// **아닐경우 이메일 형식이 올바르지 않습니다 << 모달**
+
+const ConfirmCode = () => {
+    if (userWriteCode.length > 0) {
+      const ConfirmForm = new FormData();
+      ConfirmForm.append('code', userWriteCode);
+      ConfirmForm.append('id', userTicket);
+      confirmEmailCode(
+        ConfirmForm,
+        (res) => {
+          AsyncStorage.setItem('email', userWriteEmail);
+          **alert('인증이 완료되었습니다'); << 모달** 
+          navigation.navigate('SignupScreen');
+        },
+        (error) => {
+          console.log(error);
+          **alert('인증번호가 틀렸습니다.'); << 모달** 
+      );
+    }
+
+**alert('인증코드를 작성하세요.'); << 모달**  }; 
+
+
+
+### 2.  LoginScreen
+
+ const LoginHandler = async () => {
+
+  let loginForm = new FormData();
+
+  loginForm.append('username', userName);
+
+  loginForm.append('password', userPassword);
+
+  loginInstance(
+
+   loginForm,
+
+   async (res) => {
+
+​    *if* (*await* AsyncStorage.getItem('jwt')) {
+
+​     AsyncStorage.removeItem('jwt');
+
+​    }
+
+​    *await* AsyncStorage.setItem('jwt', res.data.token);
+
+​    alert('로그인 되었습니다.'); << 모달!
+
+​    navigation.navigate('SelectProfile');
+
+   },
+
+   (error) => {
+
+​    alert('비밀번호가 잘못되었습니다'); << 모달!
+
+​    console.log(error);
+
+   },
+
+  );
+
+ };
+
+
+
+### 3. ModifyPassword
+
+const submitHandler = async () => {
+
+  let ChangePasswordForm = new FormData();
+
+  ChangePasswordForm.append('password', userWritePassword);
+
+  ChangePasswordForm.append('password_confirmation', userCheckPassword);
+
+
+
+  changePWForLost(
+
+   userID,
+
+   ChangePasswordForm,
+
+   (res) => {
+
+​    alert('비밀번호가 변경 되었습니다.'); << 모달
+
+​    navigation.navigate('LoginScreen');
+
+   },
+
+   (error) => {
+
+​    alert('ERROR'); << 비밀번호 형식이 올바르지 않습니다. << 모달
+
+​    console.log(error);
+
+   },
+
+  );
+
+ };
+
+### 4. PinScreen
+
+signupInstance(
+
+​    pinAuthForm,
+
+​    (res) => {
+
+​     const token = res.data.token;
+
+​     AsyncStorage.removeItem('jwt');
+
+​     AsyncStorage.setItem('jwt', token);
+
+​     alert('회원가입 되었습니다.'); >> 모달
+
+​     navigation.navigate('SelectProfile');
+
+​    },
+
+​    (error) => {
+
+​     alert('ERROR'); << 올바른 정보를 입력하세요 >> 모달
+
+​     console.log(error);
+
+​    },
+
+   );
+
+  } *else* {
+
+   alert('핀 번호가 일치하지않습니다.'); >> 모달
+
+  }
+
+
+
+### 5. SearchPassword
+
+const AuthenticateEmail = async () => {
+
+  let PasswordForm = new FormData();
+
+  PasswordForm.append('email', userWriteEmail);
+
+  PasswordForm.append('username', userWriteName);
+
+  sendEmailForPW(
+
+   PasswordForm,
+
+   (res) => {
+
+​    setUserTicket(res.data.id);
+
+​    setVisibleState(false);
+
+​    setCodeInputState(true);
+
+​    alert('인증번호를 보냈습니다.'); << 모달
+
+   },
+
+   (error) => {
+
+​    alert('이메일 또는 아이디가 등록되지 않았습니다');  << 모달
+
+​    console.log(error);
+
+   },
+
+  );
+
+ };
+
+ const AuthenticateCode = () => {
+
+  let CodeForm = new FormData();
+
+  CodeForm.append('email', userWriteEmail);
+
+  CodeForm.append('code', userWriteCode);
+
+  CodeForm.append('id', userTicket);
+
+  confirmEmailForPW(
+
+   CodeForm,
+
+   (res) => {
+
+​    navigation.navigate('ModifyPassword', {user_ID: res.data.user});
+
+   },
+
+   (error) => {
+
+​    alert('인증번호가 일치하지 않습니다.'); << 모달
+
+​    console.log(error);
+
+   },
+
+  );
+
+ };
+
+### 6. SignupScreen
+
+*export* *default* function SingupSCreen({navigation}) {
+
+ const [userEmail, setUserEmail] = useState('');
+
+ const [userName, setUserName] = useState('');
+
+ const [userPassword, setUserPassword] = useState('');
+
+ const [userPasswordchk, setUserPasswordchk] = useState('');
+
+ const [idAvailable, setIdAvailable] = useState(false);
+
+ const idCheck = () => {
+
+  let idCheckForm = new FormData();
+
+  idCheckForm.append('username', userName);
+
+  duflicationCheckID(
+
+   idCheckForm,
+
+   (res) => {
+
+​    const idcheck = res.data;
+
+​    console.log(idcheck);
+
+​    setIdAvailable(true);
+
+​    alert('사용가능한 아이디입니다.'); >> 모달
+
+   },
+
+   (error) => {
+
+​    alert('존재하는 아이디입니다.'); >> 모달
+
+​    console.log(error);
+
+   },
+
+  );
+
+ };
+
+ const SubmitHandler = () => {
+
+  *if* (idAvailable) {
+
+   *if* (userPassword === userPasswordchk) {
+
+​    AsyncStorage.setItem('username', userName);
+
+​    AsyncStorage.setItem('password', userPassword);
+
+​    AsyncStorage.setItem('password_confirmation', userPasswordchk);
+
+​    navigation.navigate('PinScreen');
+
+   } *else* {
+
+​    alert('비밀번호가 일치하지않습니다.'); >> 모달
+
+   }
+
+  } *else* {
+
+   alert('아이디 중복확인 하세요'); >> 모달
+
+  }
+
+ };
+
