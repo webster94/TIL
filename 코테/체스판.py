@@ -1,32 +1,29 @@
-def startwithW():
-    countW = 0
-    for i in range(N):
-        for j in range(M):
-            if i % 2 == 0 and j % 2 == 0:
-                if arr[i][j] != 'W':
-                    countW +=1
-            elif i %2 and j %2 :
-                if arr[i][j] != 'W':
-                    countW +=1
-    return countW
-def startwithB():
-    countB = 0
-    for i in range(N):
-        for j in range(M):
-            if i % 2 == 0 and j % 2 == 0:
-                if arr[i][j] != 'B':
-                    countB +=1
-            elif i %2 and j %2 :
-                if arr[i][j] != 'B':
-                    countB +=1
-    return countB
+def start():
+    result = []
+    for i in range(N-7):
+        for j in range(M-7):
+            countB = 0  # 고쳐야할 대상
+            countW = 0 # 고쳐야할 대상
+            for n in range(i,i+8):
+                for m in range(j,j+8):
+                    if (n + m) %2 ==0 :
+                        if arr[n][m]!='W':
+                            countB +=1
+                        if arr[n][m] != 'B':
+                            countW +=1
+                    else:
+                        if arr[n][m]!='B':
+                            countB += 1
+                        if arr[n][m] != 'W':
+                            countW +=1
 
-N,M = map(int,input().split())
+            result.append(countB)
+            result.append(countW)
+    print(result)
+    print(min(result))
+
+
+
+N, M = map(int, input().split())
 arr = [list(input()) for _ in range(N)]
-res1 = startwithW()
-res2 = startwithB()
-# print(res1,res2)
-if res1 > res2 :
-    print(res2)
-else:
-    print(res1)
+start()
