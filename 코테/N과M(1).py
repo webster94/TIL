@@ -19,17 +19,33 @@
 #                 if i != j and j != k and i != k and i != n and n != j and n != k:
 #                     print(i, j, k, n)
 
-def permutation():
+# def permutation():
+#     if len(arr) == M:
+#         print(' '.join(map(str,arr)))
+#         return
+#     for i in range(1,N+1):
+#         if i in arr:
+#             continue
+#         arr.append(i)
+#         permutation()
+#         arr.pop()
+#
+# N,M = map(int,input().split())
+# arr= []
+# permutation()
+
+
+def Permutation(start):
     if len(arr) == M:
         print(' '.join(map(str,arr)))
         return
-    for i in range(1,N+1):
-        if i in arr:
-            continue
-        arr.append(i)
-        permutation()
-        arr.pop()
+    else:
+        for i in range(N):
+            if i+1 in arr: continue
+            arr.append(i+1)
+            Permutation(i)
+            arr.pop()
 
 N,M = map(int,input().split())
 arr= []
-permutation()
+Permutation(0)
